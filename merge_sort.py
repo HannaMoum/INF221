@@ -66,12 +66,14 @@ if __name__ == "__main__":
         print()
 
     arr = [12, 11, 13, 5, 6, 7]
+    import numpy as np
+    arr = np.arange(8000)
     n = len(arr)
 
-    print("Original array is:", end="\n")
-    printArray(arr, n)
+    # print("Original array is:", end="\n")
+    # printArray(arr, n)
 
     mergeSort(arr, 0, n-1)
-
-    print("Sorted array is:", end="\n")
-    printArray(arr, n)
+    print(arr)
+    # print("Sorted array is:", end="\n")
+    # printArray(arr, n)

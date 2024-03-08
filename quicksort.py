@@ -22,7 +22,9 @@ def partition(A, p, r):
 
 
 if __name__ == "__main__":
+    import numpy as np
     array=[2,3,55,6,7,8, 239, 10]
+    array = np.arange(998) # i can't run over 999...
     arr_copy = array.copy()  # Make a copy of the array to sort
     quicksort(arr_copy, 0, len(arr_copy) - 1)  # Sort the array
     print(arr_copy)
