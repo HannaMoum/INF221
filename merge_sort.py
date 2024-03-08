@@ -57,19 +57,21 @@ def mergeSort(A, p, r):
         mergeSort(A, q + 1, r)
         merge(A, p, q, r)
 
-# Test the array
-def printArray(A, n):
-    for i in range(n):
-        print(A[i], end=" ")
-    print()
 
-arr = [12, 11, 13, 5, 6, 7]
-n = len(arr)
+if __name__ == "__main__":
+    # Test the array
+    def printArray(A, n):
+        for i in range(n):
+            print(A[i], end=" ")
+        print()
 
-print("Original array is:", end="\n")
-printArray(arr, n)
+    arr = [12, 11, 13, 5, 6, 7]
+    n = len(arr)
 
-mergeSort(arr, 0, n-1)
+    print("Original array is:", end="\n")
+    printArray(arr, n)
 
-print("Sorted array is:", end="\n")
-printArray(arr, n)
+    mergeSort(arr, 0, n-1)
+
+    print("Sorted array is:", end="\n")
+    printArray(arr, n)
