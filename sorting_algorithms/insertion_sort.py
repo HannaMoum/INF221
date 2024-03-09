@@ -14,7 +14,7 @@ def insertionSort(A):
 
 if __name__ == "__main__":
     # Test the insertion sort function
-    array = [12, 11, 13, 5, 6, 7]
+    array = [15, 3, 9, 7, 5, 13, 20]
     print("The original array is:", array)
 
     insertionSort(array)
