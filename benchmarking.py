@@ -3,6 +3,7 @@ import timeit
 from copy import copy
 from sorting_algorithms.quicksort import quicksort
 from sorting_algorithms.merge_sort import mergeSort
+from sorting_algorithms.insertion_sort import insertionSort
 from test_data import data_lengths, test_data
 import pandas as pd
 
@@ -39,5 +40,5 @@ def benchmark(sorting_algorithm):
     df.to_pickle(sorting_algorithm.__name__ + ".pkl") # upload benchmarking to pickle file
 
 if __name__ == "__main__":
-    # Decide which algorithm to benchmark
+    # Decide which algorithms to benchmark
     benchmark(mergeSort)
