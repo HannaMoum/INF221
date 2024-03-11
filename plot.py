@@ -28,6 +28,21 @@ def generate_line_plot(df, title, xlabel, ylabel, file_name):
     plt.savefig(file_name, bbox_inches='tight')
     plt.show()
 
+def generate_random_line_plot(algorithms, algorithm_dfs, title, xlabel, ylabel, file_name):
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    # Plot the 'size' against the 'random' column for each algorithm
+    for algo, df in zip(algorithms, algorithm_dfs):
+        ax.plot(df['size'], df['random'], marker='o', linestyle='-', label=algo)
+
+    ax.set_title(title)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.legend()
+
+    plt.savefig(file_name, bbox_inches='tight')
+    plt.show()
+
 if __name__ == "__main__":
     # Combining the benchmark results from different algorithms
     merge_sort_df = read_benchmark_results('mergeSort')
@@ -48,3 +63,10 @@ if __name__ == "__main__":
     generate_line_plot(quicksort_df, title='Insertion Sort', xlabel='Input Size', ylabel='Running Time',
                        file_name='insertionsort_line_plot.pdf')
 
+    # Generating and save random line plot for all algorithms
+    generate_random_line_plot(['Merge Sort', 'Quick Sort', 'Insertion Sort'],
+                              [merge_sort_df, quicksort_df, insertion_sort_df],
+                              title='Random Data Comparison',
+                              xlabel='Input Size',
+                              ylabel='Running Time',
+                              file_name='random_comparison_line_plot.pdf')
