@@ -47,6 +47,6 @@ if __name__ == "__main__":
                   file_name='quicksort_plot.pdf')
 
     # Generating and save plot for insertion sort
-    generate_plot(x_values, insertion_sort_df[['random', 'sorted', 'reversed']],
-                  title='Insertion Sort', xlabel='Input Size', ylabel='Running Time',
-                  file_name='insertion_sort_plot.pdf')
+    #generate_plot(x_values, insertion_sort_df[['random', 'sorted', 'reversed']],
+                  #title='Insertion Sort', xlabel='Input Size', ylabel='Running Time',
+                  #file_name='insertion_sort_plot.pdf')
