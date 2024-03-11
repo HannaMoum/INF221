@@ -28,9 +28,10 @@ if __name__ == "__main__":
     # Combining the benchmark results from different algorithms
     merge_sort_df = read_benchmark_results('mergeSort')
     quicksort_df = read_benchmark_results('quicksort')
-    #insertion_sort_df = read_benchmark_results('insertion_sort')  # Adjust file name as needed
+    #insertion_sort_df = read_benchmark_results('insertion_sort')
 
     print(merge_sort_df.columns)
+    print(quicksort_df.columns)
 
     # Assuming all dataframes have the same 'size' column
     x_values = merge_sort_df['size']
@@ -46,6 +47,6 @@ if __name__ == "__main__":
                   file_name='quicksort_plot.pdf')
 
     # Generating and save plot for insertion sort
-    #generate_plot(x_values, insertion_sort_df[['random', 'sorted', 'reversed']],
-                  #title='Insertion Sort', xlabel='Input Size', ylabel='Running Time',
-                  #file_name='insertion_sort_plot.pdf')
+    generate_plot(x_values, insertion_sort_df[['random', 'sorted', 'reversed']],
+                  title='Insertion Sort', xlabel='Input Size', ylabel='Running Time',
+                  file_name='insertion_sort_plot.pdf')
