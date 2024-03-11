@@ -14,7 +14,7 @@ def read_benchmark_results(algorithm_name):
 def new_figure(height=55):
     return plt.figure(figsize=(84/25.4, height/25.4))
 
-def generate_line_plot(df, title, xlabel, ylabel, file_name):
+def generate_plot(df, title, xlabel, ylabel, file_name):
     fig, ax = plt.subplots(figsize=(10, 6))
 
     # Plot the 'size' against the specified columns
@@ -28,7 +28,7 @@ def generate_line_plot(df, title, xlabel, ylabel, file_name):
     plt.savefig(file_name, bbox_inches='tight')
     plt.show()
 
-def generate_random_line_plot(algorithms, algorithm_dfs, title, xlabel, ylabel, file_name):
+def generate_random_plot(algorithms, algorithm_dfs, title, xlabel, ylabel, file_name):
     fig, ax = plt.subplots(figsize=(10, 6))
 
     # Plot the 'size' against the 'random' column for each algorithm
@@ -52,19 +52,19 @@ if __name__ == "__main__":
     x_values = merge_sort_df['size']
 
     # Generating and save line plot for Merge Sort
-    generate_line_plot(merge_sort_df, title='Merge Sort', xlabel='Input Size', ylabel='Running Time',
+    generate_plot(merge_sort_df, title='Merge Sort', xlabel='Input Size', ylabel='Running Time',
                        file_name='mergesort_line_plot.pdf')
 
     # Generating and save line plot for Quick Sort
-    generate_line_plot(quicksort_df, title='Quick Sort', xlabel='Input Size', ylabel='Running Time',
+    generate_plot(quicksort_df, title='Quick Sort', xlabel='Input Size', ylabel='Running Time',
                        file_name='quicksort_line_plot.pdf')
 
     # Generating and save line plot for Insertion Sort
-    generate_line_plot(quicksort_df, title='Insertion Sort', xlabel='Input Size', ylabel='Running Time',
+    generate_plot(quicksort_df, title='Insertion Sort', xlabel='Input Size', ylabel='Running Time',
                        file_name='insertionsort_line_plot.pdf')
 
     # Generating and save random line plot for all algorithms
-    generate_random_line_plot(['Merge Sort', 'Quick Sort', 'Insertion Sort'],
+    generate_random_plot(['Merge Sort', 'Quick Sort', 'Insertion Sort'],
                               [merge_sort_df, quicksort_df, insertion_sort_df],
                               title='Random Data Comparison',
                               xlabel='Input Size',
