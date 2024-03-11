@@ -24,4 +24,4 @@ for idx, length in enumerate(data_lengths):
     sorted_arrs[idx] = np.arange(length)
     reversed_arrs[idx] = sorted_arrs[idx][::-1]
     
-test_data = {"random": random_arrs, "sorted": sorted_arrs, "resversed": reversed_arrs}
+test_data = {"random": random_arrs, "sorted": sorted_arrs, "reversed": reversed_arrs}

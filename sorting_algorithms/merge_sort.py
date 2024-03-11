@@ -8,6 +8,7 @@ Second subarray is A[q+1...r]
 Inspired by code contributed by Mohit Kumra, at https://www.geeksforgeeks.org/python-program-for-merge-sort/
 
 """
+import numpy as np
 
 def merge(A, p, q, r):
     # Calculate the sizes of the left and right halves
@@ -59,21 +60,11 @@ def mergeSort(A, p, r):
 
 
 if __name__ == "__main__":
-    # Test the array
-    def printArray(A, n):
-        for i in range(n):
-            print(A[i], end=" ")
-        print()
+    # Test the merge sort function
+    array = [15, 3, 9, 7, 5, 13, 20]
+    print("The original array is:", array)
 
-    arr = [12, 11, 13, 5, 6, 7]
-    import numpy as np
-    arr = np.arange(8000)
-    n = len(arr)
+    # Pass correct indices to the mergeSort function
+    mergeSort(array, 0, len(array) - 1)
 
-    # print("Original array is:", end="\n")
-    # printArray(arr, n)
-
-    mergeSort(arr, 0, n-1)
-    print(arr)
-    # print("Sorted array is:", end="\n")
-    # printArray(arr, n)
+    print("The sorted array is:", array)
