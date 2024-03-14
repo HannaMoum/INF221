@@ -16,14 +16,14 @@ def generate_test_data(sorting_algorithm):
         data_lengths[i] = data_lengths[i-1]*increase_factor
 
     # Initialize empty arrays
-    random_arrs  = np.empty((num_lengths, ), dtype=object)
-    sorted_arrs  = np.empty((num_lengths, ), dtype=object)
+    random_arrs   = np.empty((num_lengths, ), dtype=object)
+    sorted_arrs   = np.empty((num_lengths, ), dtype=object)
     reversed_arrs = np.empty((num_lengths, ), dtype=object)
 
     # Fill arrays with random, sorted and reverse sorted values
     for idx, length in enumerate(data_lengths):
-        random_arrs[idx] = np.random.uniform(size=length)  
-        sorted_arrs[idx] = np.arange(length)
+        random_arrs[idx]   = np.random.uniform(size=length)  
+        sorted_arrs[idx]   = np.arange(length)
         reversed_arrs[idx] = sorted_arrs[idx][::-1]
         
     test_data = {"random": random_arrs, "sorted": sorted_arrs, "reversed": reversed_arrs}
