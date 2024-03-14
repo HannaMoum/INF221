@@ -18,7 +18,7 @@ def generate_plot(df, xlabel, ylabel, file_name):
     fig, ax = plt.subplots(figsize=(10, 6))
 
     # Plot the 'size' against the specified columns
-    df.plot(x='size', y=['sorted', 'resversed', 'random'], ax=ax, marker='o', linestyle='-')
+    df.plot(x='size', y=['sorted', 'reversed', 'random'], ax=ax, marker='o', linestyle='-')
 
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
@@ -58,7 +58,7 @@ if __name__ == "__main__":
                        file_name='quicksort_line_plot.pdf')
 
     # Generating and save line plot for Insertion Sort
-    generate_plot(quicksort_df, xlabel='Input Size', ylabel='Running Time',
+    generate_plot(insertion_sort_df, xlabel='Input Size', ylabel='Running Time',
                        file_name='insertionsort_line_plot.pdf')
 
     # Generating and save random line plot for all algorithms
