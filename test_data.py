@@ -2,7 +2,7 @@ import numpy as np
 
 rng = np.random.seed(72) #use for creating test data with a seed
 increase_factor = 2
-num_lengths = 14
+num_lengths = 10
 # might have to change length for the different algorithms. 
 # length of 14 goes up to 8000
 # length of 12 goes up to 2000
@@ -25,3 +25,5 @@ for idx, length in enumerate(data_lengths):
     reversed_arrs[idx] = sorted_arrs[idx][::-1]
     
 test_data = {"random": random_arrs, "sorted": sorted_arrs, "reversed": reversed_arrs}
+
+print(test_data)

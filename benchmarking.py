@@ -82,4 +82,4 @@ def benchmark_with_variance(sorting_algorithm):
 
 if __name__ == "__main__":
     # Decide which algorithms to benchmark
-    benchmark(insertionSort)
+    benchmark(quicksort)
