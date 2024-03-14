@@ -67,3 +67,7 @@ if __name__ == "__main__":
                               xlabel='Input Size',
                               ylabel='Running Time',
                               file_name='random_comparison_line_plot.pdf')
+
+    # sns.deviatian plot søk opp (seaborn lineplot with standard deviation/confidence interval specified
+
+    # Legg inn en linje for O-notasjon i hvert plot for å vise "teoretisk" forventet
