@@ -4,10 +4,17 @@ from copy import copy
 from sorting_algorithms.quicksort import quicksort
 from sorting_algorithms.merge_sort import mergeSort
 from sorting_algorithms.insertion_sort import insertionSort
-from test_data import data_lengths, test_data
+from test_data import generate_test_data
 import pandas as pd
 
 def benchmark(sorting_algorithm):
+    """ 
+    Benchmark the sorting_algorithm by running for various array sizes, determined in the "generate_test_data" function.
+    Also, benchmark average, best- and worst case.
+    The number of executions is limited depedendent on the arra size to prevent benchmarking from taking an unneccessary long time.
+    """
+    data_lengths, test_data = generate_test_data(sorting_algorithm)
+
     repeat = 5 # number of repetitions we will perform
     df = pd.DataFrame({"size": data_lengths}) # will store all benchmark times in this dataframe
     n = len(data_lengths)
@@ -23,7 +30,7 @@ def benchmark(sorting_algorithm):
         
         # perform sorting for all array sizes
         for i in range(n): 
-            print(i)
+            print("Running array size", len(data[i]))
 
             # Set up timer with algorithm and data
             clock = timeit.Timer(stmt=stmt, 
@@ -47,17 +54,30 @@ def benchmark(sorting_algorithm):
 
 
 def benchmark_with_variance(sorting_algorithm):
-    #repeat = 5 # number of repetitions we will perform
+    """ Benchmark the sorting_algorithm by running for various array sizes, determined in the "generate_test_data" function.
+    Save all times for each execution for each array size to get an idea of the variance in running times.
+    Only the randomly ordered arrays are considered here.
+    The number of executions is limited differently for the different sorting algorithms due to 
+    the difference in efficiency for the algorithms.
+    """
+    data_lengths, test_data = generate_test_data(sorting_algorithm)
     df = pd.DataFrame(columns = data_lengths) # will store all benchmark times in this dataframe
             # each column represents all times measured for one array size marked by the columnname
 
     if sorting_algorithm.__name__ == "insertionSort":
         stmt = "sort_func(copy(data))"
-    else:
+        n_executions = 30
+    elif sorting_algorithm.__name__ == "mergeSort":
         stmt = "sort_func(copy(data), 0, len(data)-1)"
+        n_executions = 300
+    elif sorting_algorithm.__name__ == "quicksort":
+        stmt = "sort_func(copy(data), 0, len(data)-1)"
+        n_executions = 10000
+    else:
+        raise AttributeError ("The provided sorting algorithm is not defined")
 
     for data in test_data["random"]: # benchmark for all random, sorted and reversed arrays
-
+        print('running array size: ', len(data))
         # Set up timer with algorithm and data
         clock = timeit.Timer(stmt=stmt, 
                             globals={"sort_func": sorting_algorithm, # function to time
@@ -66,20 +86,22 @@ def benchmark_with_variance(sorting_algorithm):
                             }  
         )
 
-        n_executions, t = clock.autorange() # how many executions can we make before time > (0.2 -> 0.5, might depend on computer)
-        n_executions *= 3 # closer to 1 second than 0.2
         run_times = np.empty(n_executions) # will store running times for each iteration
         # perform timing
         for i in range(n_executions):
-            time = clock.timeit(1) # for lite?
-            run_times[i] = time
+            run_times[i] = clock.timeit(1) 
 
-        # TODO: Add runtimes to dataframe OR create and save only statistics for runtimes in dataframe
-        #df[len(data)] = ...
-
-    #df.to_pickle("results/variance_" + sorting_algorithm.__name__ + ".pkl") # upload benchmarking to pickle file
+        df[len(data)] = run_times # update dataframe
+    
+    df.to_pickle("results/variance_" + sorting_algorithm.__name__ + ".pkl") # upload benchmarking to pickle file
 
 
 if __name__ == "__main__":
     # Decide which algorithms to benchmark
-    benchmark(insertionSort)
+    #benchmark(insertionSort)
+    #benchmark(mergeSort)
+    #benchmark(quicksort)
+    #benchmark_with_variance(insertionSort)
+    benchmark_with_variance(mergeSort)
+    #benchmark_with_variance(quicksort)
+    
