@@ -5,9 +5,9 @@ def generate_test_data(sorting_algorithm):
     increase_factor = 2
 
     if sorting_algorithm.__name__ == "quicksort":
-        num_lengths = 10 # up tp length of 500
+        num_lengths = 10 # up to length of 500
     else:
-        num_lengths = 14 # up tp length of 8000
+        num_lengths = 14 # up to length of 8000
 
     # initialize an array contaning the different array sizes that will be benchmarked
     data_lengths = np.zeros(num_lengths).astype("int64")

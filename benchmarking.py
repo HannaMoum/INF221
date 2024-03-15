@@ -9,9 +9,11 @@ import pandas as pd
 
 def benchmark(sorting_algorithm):
     """ 
-    Benchmark the sorting_algorithm by running for various array sizes, determined in the "generate_test_data" function.
+    Benchmark the sorting_algorithm by running for various array sizes, 
+    determined in the "generate_test_data" function.
     Also, benchmark average, best- and worst case.
-    The number of executions is limited depedendent on the arra size to prevent benchmarking from taking an unneccessary long time.
+    The number of executions is limited depedendent on the array size to
+    prevent benchmarking from taking an unneccessary long time.
     """
     data_lengths, test_data = generate_test_data(sorting_algorithm)
 
@@ -40,22 +42,25 @@ def benchmark(sorting_algorithm):
                                 }  
             )
 
-            n_executions, t = clock.autorange() # how many executions can we make before time > (0.2 -> 0.5, might depend on computer)
+            # calculate number of executions dependent on input size
+            n_executions, t = clock.autorange()
             n_executions *= 3 # closer to 1 second than 0.2
             # perform timing
             time = clock.repeat(repeat=repeat, 
                                 number=n_executions
                                 ) # number of executions, repeated 5 times
-             
-            run_times[i] = sum(time)/(n_executions*repeat) # average value for each execution considering all the repetitions
+            
+            # average value for each execution considering all the repetitions
+            run_times[i] = sum(time)/(n_executions*repeat) 
         df[name] = run_times # add columns for benchmarking random, sorted and reversed arrays
 
     df.to_pickle("results/" + sorting_algorithm.__name__ + ".pkl") # upload benchmarking to pickle file
 
 
 def benchmark_with_variance(sorting_algorithm):
-    """ Benchmark the sorting_algorithm by running for various array sizes, determined in the "generate_test_data" function.
-    Save all times for each execution for each array size to get an idea of the variance in running times.
+    """ Benchmark the sorting_algorithm by running for various array sizes, 
+    determined in the "generate_test_data" function. Save all times for each execution 
+    for each array size to get an idea of the variance in running times.
     Only the randomly ordered arrays are considered here.
     The number of executions is limited differently for the different sorting algorithms due to 
     the difference in efficiency for the algorithms.
