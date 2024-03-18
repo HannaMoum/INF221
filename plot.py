@@ -38,7 +38,6 @@ def generate_random_plot(algorithms, algorithm_dfs, xlabel, ylabel, file_name):
 
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
-    #ax.get_legend().remove()
 
     plt.savefig(file_name, bbox_inches='tight')
     plt.show()
@@ -48,13 +47,6 @@ if __name__ == "__main__":
     merge_sort_df = read_benchmark_results('mergeSort')
     quicksort_df = read_benchmark_results('quicksort')
     insertion_sort_df = read_benchmark_results('insertionSort')
-
-    # Define theoretical complexities for each algorithm
-    theoretical_complexities = {
-        'Merge sort': lambda x: x * np.log(x),  # O(n log n)
-        'Quicksort': lambda x: x * np.log(x),  # O(n log n)
-        'Insertion sort': lambda x: x  # O(n)
-    }
 
     # Generating and save line plot for Merge Sort
     generate_plot(merge_sort_df, xlabel='Input Size', ylabel='Running Time',
