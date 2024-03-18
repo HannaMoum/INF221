@@ -37,9 +37,9 @@ def new_figure(height=55):
 def generate_plot(df, xlabel, ylabel, file_name):
     fig, ax = plt.subplots(figsize=(10, 6))
 
-    # Plot the 'size' against the specified columns
-    df.plot(x='size', y=['sorted', 'reversed', 'random'], ax=ax, marker='o', linestyle='-')
-    df.plot(x='size', y=['theoretical_avg', 'theoretical_bst', 'theoretical_wrs'], ax=ax, marker='', linestyle='-', color='black')
+    # Plot the 'size' against the specified columns without legend
+    df.plot(x='size', y=['sorted', 'reversed', 'random'], ax=ax, marker='o', linestyle='-', legend=False)
+    df.plot(x='size', y=['theoretical_avg', 'theoretical_bst', 'theoretical_wrs'], ax=ax, marker='', linestyle='-', color='black', legend=False)
 
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
@@ -51,7 +51,7 @@ def generate_plot(df, xlabel, ylabel, file_name):
 def generate_random_plot(algorithms, algorithm_dfs, xlabel, ylabel, file_name):
     fig, ax = plt.subplots(figsize=(10, 6))
 
-    # Plot the 'size' against the 'random' column for each algorithm
+    # Plot the 'size' against the 'random' column for each algorithm without legend
     for algo, df in zip(algorithms, algorithm_dfs):
         ax.plot(df['size'], df['random'], marker='o', linestyle='-', label=algo)
 
