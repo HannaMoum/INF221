@@ -47,6 +47,37 @@ def plot_variance(preprocessed_dfs, algorithm_names):
     plt.savefig('variance_plot.pdf')
     plt.show()
 
+def add_ci_columns(df):
+    df['CI Lower'] = df['Mean Time (sec)'] - df['CI']
+    df['CI Higher'] = df['Mean Time (sec)'] + df['CI']
+    return df
+
+def create_pdf_table_per_algorithm(df, algorithm_name, decimal_places=4):
+    # Rounding the numerical values
+    df_rounded = df.round(decimal_places)
+
+    # Create and style the table
+    fig, ax = plt.subplots(figsize=(8, 0.5 * len(df_rounded)))
+    ax.axis('off')
+    table = ax.table(cellText=df_rounded.values, colLabels=df_rounded.columns, loc='center', cellLoc='center')
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
+    table.scale(1, 1.5)
+
+    # Styling the table
+    for k, cell in table._cells.items():
+        cell.set_edgecolor('black')
+        if k[0] == 0 or k[1] < 0:
+            cell.set_text_props(weight='bold', color='white')
+            cell.set_facecolor('#40466e')
+        else:
+            cell.set_facecolor('white')
+
+    # Save the table as a PDF
+    pdf_file = f'{algorithm_name}_performance_summary.pdf'
+    plt.savefig(pdf_file, bbox_inches='tight', pad_inches=0.1)
+    plt.close()
+
 
 if __name__ == "__main__":
     # Combining the benchmark results from different algorithms
@@ -56,3 +87,9 @@ if __name__ == "__main__":
 
     # Plot variance for each algorithm
     plot_variance([merge_sort_df, insertion_sort_df, quicksort_df], ['Merge Sort', 'Insertion Sort', 'Quick Sort'])
+
+    for algorithm in ['mergeSort', 'quicksort', 'insertionSort']:
+        df = read_preprocess_results(algorithm)
+        df_with_ci = add_ci_columns(df)
+        create_pdf_table_per_algorithm(df_with_ci, algorithm)
+
