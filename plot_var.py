@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import t
+from matplotlib.backends.backend_pdf import PdfPages
+
 
 # Read the results from pkl file and preprocess
 def read_preprocess_results(algorithm_name):
@@ -44,6 +46,7 @@ def plot_variance(preprocessed_dfs, algorithm_names):
     plt.grid(True)
     plt.savefig('variance_plot.pdf')
     plt.show()
+
 
 if __name__ == "__main__":
     # Combining the benchmark results from different algorithms
