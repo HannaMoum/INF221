@@ -44,7 +44,7 @@ def plot_variance(preprocessed_dfs, algorithm_names):
     plt.ylabel('Time')
     plt.rcParams.update({'font.size': 18})
     plt.grid(True)
-    plt.savefig('variance_plot.pdf')
+    plt.savefig('figures/variance_plot.pdf')
     plt.show()
 
 def add_ci_columns(df):
@@ -74,7 +74,7 @@ def create_pdf_table_per_algorithm(df, algorithm_name, decimal_places=4):
             cell.set_facecolor('white')
 
     # Save the table as a PDF
-    pdf_file = f'{algorithm_name}_performance_summary.pdf'
+    pdf_file = f'figures/{algorithm_name}_performance_summary.pdf'
     plt.savefig(pdf_file, bbox_inches='tight', pad_inches=0.1)
     plt.close()
 

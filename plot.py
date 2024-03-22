@@ -47,7 +47,7 @@ def generate_plot(df, algorithm, xlabel, ylabel, file_name):
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     plt.grid(True)
-    plt.savefig(file_name, bbox_inches='tight')
+    plt.savefig('figures/' + file_name, bbox_inches='tight')
     plt.show()
 
 # Create a table in pdf
@@ -81,7 +81,7 @@ def create_pdf_table(df, algorithm_name, decimal_places=4):
             cell.set_facecolor('white')
 
     # Adjust layout and save to PDF
-    pdf_file = f'{algorithm_name}_benchmark_summary.pdf'
+    pdf_file = f'figures/{algorithm_name}_benchmark_summary.pdf'
     with PdfPages(pdf_file) as pdf:
         pdf.savefig(fig, bbox_inches='tight', pad_inches=0)
 
